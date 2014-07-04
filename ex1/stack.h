@@ -2,7 +2,7 @@
 
 struct Stack;
 
-Stack * createStack();  //0
+Stack * createStack();
 
 void deleteStack(Stack* stack);
 

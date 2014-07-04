@@ -6,13 +6,6 @@
 
 using namespace std;
 
-struct ListElement {
-    int value;
-    ListElement*next;
-};
-
-
-
 
 int main()
 {
