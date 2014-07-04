@@ -18,7 +18,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    stack.cpp
+    pointerStack.cpp \
+    arraystack.cpp
 
 HEADERS += \
-    stack.h
+    pointerStack.h \
+    arraystack.h
