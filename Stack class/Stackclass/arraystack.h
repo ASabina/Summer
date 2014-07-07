@@ -10,7 +10,7 @@ public:
 
 private:
     int index;
-    int st [100];
+    int st[100];
     int value;
 
 };

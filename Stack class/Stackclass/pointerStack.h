@@ -5,7 +5,7 @@ class Stack
 {
 public:
     Stack();
-    void push(   int value  );
+    void push(int value);
     int pop();
 private:
     struct StackElement {
