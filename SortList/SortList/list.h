@@ -1,5 +1,8 @@
 #ifndef LIST_H
 #define LIST_H
+#include <iostream>
+
+using namespace std;
 
 class List
 {
@@ -10,13 +13,14 @@ public:
     };
     List();
     ListElement *End();
-    void Insert (int x, ListElement* p);
+    void Insert (int x);
     void Delete (ListElement *p);
     ListElement *Locate (int x);
     ListElement *BeginL();
+    void DeleteI (int x);
+    void Print ();
 
 private:
-
 
     ListElement *head;
 
