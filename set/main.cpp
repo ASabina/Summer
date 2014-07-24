@@ -11,6 +11,9 @@ int main()
     set->insert(12);
     set->insert(1);
     set->insert(12);
+    set->remove(4);
+    set->remove(12);
+    set->remove(2);
 
     return 0;
 }

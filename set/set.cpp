@@ -2,38 +2,36 @@
 
 Set::Set()
 {
-    top = nullptr;
+    root = nullptr;
 }
 
 bool Set::exists(int k)
 {
-    if (top == nullptr)
+    if (root == nullptr)
     {
         return false;
     }
     else
     {
-        if (k == top->value)
+        if (k == root->value)
         {
             return true;
         }
-        else if (k < top->left->value)
+        else if (k < root->left->value)
         {
-            top = top->left;
+            root = root->left;
         }
-        else if (k > top->right->value)
+        else if (k > root->right->value)
         {
-            top = top->right;
-            return exists(k);
+            root = root->right;
         }
         return exists(k);
-
     }
 }
 
 void Set::insert(int k)
 {
-    recursiveInsert(k, top, top);
+    recursiveInsert(k, root, root);
 }
 
 void Set::recursiveInsert(int insertedValue, TreeElement *currentNode, TreeElement *parent)
@@ -44,9 +42,9 @@ void Set::recursiveInsert(int insertedValue, TreeElement *currentNode, TreeEleme
         newElement->value = insertedValue;
         newElement->left = nullptr;
         newElement->right = nullptr;
-        if (top == nullptr)
+        if (root == nullptr)
         {
-            top = newElement;
+            root = newElement;
         }
         else
         {
@@ -83,3 +81,84 @@ void Set::recursiveInsert(int insertedValue, TreeElement *currentNode, TreeEleme
         recursiveInsert(insertedValue, currentNode, parent);
     }
 }
+
+void Set::remove(int k) {
+    recursiveRemove(k, root, root);
+}
+
+void Set::recursiveRemove(int deletedValue, TreeElement *temp, TreeElement *parent) {
+    if (temp == nullptr )
+    {
+        return;
+    }
+    else
+    {
+        if (deletedValue== temp->value)
+        {
+            if (temp->left == nullptr && temp->right == nullptr)
+            {
+                if (deletedValue < parent->value)
+                {
+                    parent->left = nullptr;
+                }
+                else
+                {
+                    parent->right = nullptr;
+                }
+                delete temp;
+                return;
+            }
+            if (temp->left == nullptr || temp->right == nullptr)
+            {
+                if (deletedValue < parent->value)
+                {
+                    parent->left = temp->left;
+                }
+                else
+                {
+                    parent->right = temp->right;
+                }
+                delete temp;
+                return;
+            }
+            if (temp->left != nullptr && temp->right != nullptr)
+            {
+                TreeElement *i = nullptr;
+                i = minR(temp);
+                int k = i->value;
+                remove(i->value);
+                temp->value = k;
+            }
+        }
+        if (deletedValue < temp->value)
+        {
+            if (root != temp)
+            {
+                parent = temp;
+            }
+            temp = temp->left;
+            recursiveRemove(deletedValue, temp, parent);
+        }
+        if (deletedValue > temp->value)
+        {
+            if (root != temp)
+            {
+                parent = temp;
+            }
+            temp = temp->right;
+            recursiveRemove(deletedValue, temp, parent);
+        }
+
+    }
+}
+
+
+Set:: TreeElement * Set::minR(TreeElement* t) {
+    t = t->right;
+    while (t->left != nullptr)
+    {
+        t = t->left;
+    }
+    return t;
+}
+

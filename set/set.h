@@ -9,14 +9,19 @@ public:
     void remove(int k);
     bool exists(int k);
 
+
 private:
-    struct TreeElement {
+    struct TreeElement
+    {
        int value;
        TreeElement *right;
        TreeElement *left;
     };
-    TreeElement *top;
+    TreeElement *root;
     void recursiveInsert(int insertedValue, TreeElement *temp, TreeElement *parent);
+    void recursiveRemove(int insertedValue, TreeElement *temp, TreeElement *parent);
+    TreeElement *minR(TreeElement *t);
+
 };
 
 #endif // SET_H
